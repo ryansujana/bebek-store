@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class PemesananDetail extends Model
 {
-    use HasFactory;
+	use HasFactory;
+
+	public function pemesanan()
+	{
+		return $this->belongsTo(Pemesanan::class, 'pemesanan_id', 'id');
+	}
+
+	public function telur()
+	{
+		return $this->belongsTo(Telur::class, 'telur_id', 'id');
+	}
 }

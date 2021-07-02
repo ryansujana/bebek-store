@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stok extends Model
 {
-    use HasFactory;
+	use HasFactory;
+
+	public function telurs()
+	{
+		return $this->hasMany(Telur::class, 'stok_id', 'id');
+	}
 }
