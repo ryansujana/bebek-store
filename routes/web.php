@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 Auth::routes();
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::livewire('/', 'home')->name('home');
+
 Route::get('/', \App\Http\Livewire\Home::class, 'home')->name('home');
+
+Route::group(['middleware' => 'auth'], function(){
+	Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
+
+	// Telur Production
+	Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
+
+});
